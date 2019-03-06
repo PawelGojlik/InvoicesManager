@@ -289,6 +289,10 @@
     <Compile Include="Migrations\201903061442388_AddContactPersonCustomer.Designer.cs">
       <DependentUpon>201903061442388_AddContactPersonCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903061540017_CustomerCreateProtection.cs" />
+    <Compile Include="Migrations\201903061540017_CustomerCreateProtection.Designer.cs">
+      <DependentUpon>201903061540017_CustomerCreateProtection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -389,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903061442388_AddContactPersonCustomer.resx">
       <DependentUpon>201903061442388_AddContactPersonCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903061540017_CustomerCreateProtection.resx">
+      <DependentUpon>201903061540017_CustomerCreateProtection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

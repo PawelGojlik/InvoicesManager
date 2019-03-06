@@ -21,26 +21,27 @@ namespace InvoicesManager.Models
         public string Address { get; set; }
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(6)]
         [Display(Name = "Zip code")]
-        [DataType(DataType.PostalCode)]
+        [RegularExpression(@"[0-9]{2}[-][0-9]{3}", ErrorMessage = "Inappropriate format")]
         public string ZipCode { get; set; }
 
         [Required]
-        [MaxLength(255)]
+        [MaxLength(30)]
         [Display(Name = "City")]
-        [DataType(DataType.Text)]
+        [RegularExpression(@"[a-zA-Z]+", ErrorMessage = "Inappropriate format")]
         public string City { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(10)]
         [Display(Name = "Tax identifier")]
+        [RegularExpression(@"[0-9]{10}", ErrorMessage = "Inappropriate format")]
         public string NIP { get; set; }
 
 
         [MaxLength(20)]
         [Display(Name = "Phone number")]
-        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Inappropriate format")]
         public string PhoneNumber { get; set; }
 
         [MaxLength(100)]
