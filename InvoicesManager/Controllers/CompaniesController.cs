@@ -10,121 +10,107 @@ using InvoicesManager.Models;
 
 namespace InvoicesManager.Controllers
 {
-    public class CustomersController : Controller
+    public class CompaniesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Customers
-        public ActionResult Index(string searchString)
+        // GET: Companies
+        public ActionResult Index()
         {
-            var customers = db.Customers.Select(c => c);
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                customers =(searchString.All(char.IsDigit))?
-                    db.Customers.Where(s => s.NIP.Contains(searchString)):
-                    db.Customers.Where(s => s.Name.Contains(searchString));
-            }
-            
-            return View(customers.ToList());
+            return View(db.Companies.ToList());
         }
 
-        // GET: Customers/Details/5
+        // GET: Companies/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(company);
         }
 
-        // GET: Customers/Create
+        // GET: Companies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Companies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create([Bind(Include = "Id,Name,Address,ZipCode,City,NIP")] Company company)
         {
             if (ModelState.IsValid)
             {
-                if (isDuplicate(customer))
-                    {
-                    ModelState.AddModelError("NIP", "User already exists");
-                    return View(customer);
-                    }
-                db.Customers.Add(customer);
+                db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(customer);
+            return View(company);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Companies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(company);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Companies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company customer)
+        public ActionResult Edit([Bind(Include = "Id,Name,Address,ZipCode,City,NIP")] Company company)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(company);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Companies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(company);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            Company company = db.Companies.Find(id);
+            db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -136,11 +122,6 @@ namespace InvoicesManager.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool isDuplicate(Customer customer)
-        {
-            return (db.Customers.Any(c => (c.NIP == customer.NIP)));
         }
     }
 }

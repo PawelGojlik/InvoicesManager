@@ -10,121 +10,116 @@ using InvoicesManager.Models;
 
 namespace InvoicesManager.Controllers
 {
-    public class CustomersController : Controller
+    public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Customers
-        public ActionResult Index(string searchString)
+        // GET: Invoices
+        public ActionResult Index()
         {
-            var customers = db.Customers.Select(c => c);
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                customers =(searchString.All(char.IsDigit))?
-                    db.Customers.Where(s => s.NIP.Contains(searchString)):
-                    db.Customers.Where(s => s.Name.Contains(searchString));
-            }
-            
-            return View(customers.ToList());
+            var invoices = db.Invoices.Include(i => i.Company).Include(i => i.Customer);
+            return View(invoices.ToList());
         }
 
-        // GET: Customers/Details/5
+        // GET: Invoices/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Invoice invoice = db.Invoices.Find(id);
+            if (invoice == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(invoice);
         }
 
-        // GET: Customers/Create
+        // GET: Invoices/Create
         public ActionResult Create()
         {
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
+            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name");
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Invoices/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                if (isDuplicate(customer))
-                    {
-                    ModelState.AddModelError("NIP", "User already exists");
-                    return View(customer);
-                    }
-                db.Customers.Add(customer);
+                db.Invoices.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(customer);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
+            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name", invoice.CustomerId);
+            return View(invoice);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Invoices/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Invoice invoice = db.Invoices.Find(id);
+            if (invoice == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
+            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name", invoice.CustomerId);
+            return View(invoice);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Invoices/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company customer)
+        public ActionResult Edit([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(invoice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
+            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name", invoice.CustomerId);
+            return View(invoice);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Invoices/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Invoice invoice = db.Invoices.Find(id);
+            if (invoice == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(invoice);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Invoices/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            Invoice invoice = db.Invoices.Find(id);
+            db.Invoices.Remove(invoice);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -136,11 +131,6 @@ namespace InvoicesManager.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        private bool isDuplicate(Customer customer)
-        {
-            return (db.Customers.Any(c => (c.NIP == customer.NIP)));
         }
     }
 }

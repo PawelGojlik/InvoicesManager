@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using InvoicesManager.Models;
 
 namespace InvoicesManager.Models
 {
-    public class Customer
+    public abstract class CoreProperties
     {
         public int Id { get; set; }
 
         [Required]
         [MaxLength(255)]
-        [Display(Name =" Customer name")]
+        [Display(Name = " Customer name")]
         public string Name { get; set; }
 
         [Required]
@@ -37,8 +38,10 @@ namespace InvoicesManager.Models
         [Display(Name = "Tax identifier")]
         [RegularExpression(@"[0-9]{10}", ErrorMessage = "Inappropriate format")]
         public string NIP { get; set; }
+    }
 
-
+    public class Customer:CoreProperties
+    {
         [MaxLength(20)]
         [Display(Name = "Phone number")]
         [DataType(DataType.PhoneNumber)]
@@ -48,4 +51,11 @@ namespace InvoicesManager.Models
         [Display(Name = "Contact person")]
         public string ContactPerson { get; set; }
     }
+
+    public class Company:CoreProperties
+    {
+
+    }
+
+    
 }

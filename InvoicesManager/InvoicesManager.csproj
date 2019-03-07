@@ -267,8 +267,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -293,10 +295,24 @@
     <Compile Include="Migrations\201903061540017_CustomerCreateProtection.Designer.cs">
       <DependentUpon>201903061540017_CustomerCreateProtection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903071145011_Add-Company.cs" />
+    <Compile Include="Migrations\201903071145011_Add-Company.Designer.cs">
+      <DependentUpon>201903071145011_Add-Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071450233_UpdateInvoiceDb.cs" />
+    <Compile Include="Migrations\201903071450233_UpdateInvoiceDb.Designer.cs">
+      <DependentUpon>201903071450233_UpdateInvoiceDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071509026_AbstractCustomerCompany.cs" />
+    <Compile Include="Migrations\201903071509026_AbstractCustomerCompany.Designer.cs">
+      <DependentUpon>201903071509026_AbstractCustomerCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -364,6 +380,16 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -396,6 +422,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903061540017_CustomerCreateProtection.resx">
       <DependentUpon>201903061540017_CustomerCreateProtection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071145011_Add-Company.resx">
+      <DependentUpon>201903071145011_Add-Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071450233_UpdateInvoiceDb.resx">
+      <DependentUpon>201903071450233_UpdateInvoiceDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071509026_AbstractCustomerCompany.resx">
+      <DependentUpon>201903071509026_AbstractCustomerCompany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
