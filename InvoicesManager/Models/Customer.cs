@@ -41,7 +41,7 @@ namespace InvoicesManager.Models
 
         [MaxLength(20)]
         [Display(Name = "Phone number")]
-        [RegularExpression(@"[0-9]+", ErrorMessage = "Inappropriate format")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [MaxLength(100)]

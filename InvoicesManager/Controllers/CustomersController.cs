@@ -15,9 +15,18 @@ namespace InvoicesManager.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Customers.ToList());
+            var customers = db.Customers.Select(c => c);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers =(searchString.All(char.IsDigit))?
+                    db.Customers.Where(s => s.NIP.Contains(searchString)):
+                    db.Customers.Where(s => s.Name.Contains(searchString));
+            }
+            
+            return View(customers.ToList());
         }
 
         // GET: Customers/Details/5
