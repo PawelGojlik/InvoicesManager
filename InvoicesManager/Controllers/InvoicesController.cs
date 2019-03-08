@@ -40,7 +40,7 @@ namespace InvoicesManager.Controllers
         public ActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
-            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name");
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace InvoicesManager.Controllers
             }
 
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
-            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name", invoice.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", invoice.CustomerId);
             return View(invoice);
         }
 
@@ -76,7 +76,7 @@ namespace InvoicesManager.Controllers
                 return HttpNotFound();
             }
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
-            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name", invoice.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", invoice.CustomerId);
             return View(invoice);
         }
 
@@ -94,7 +94,7 @@ namespace InvoicesManager.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
-            ViewBag.CustomerId = new SelectList(db.Companies, "Id", "Name", invoice.CustomerId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", invoice.CustomerId);
             return View(invoice);
         }
 

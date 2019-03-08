@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Customer.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentMonthId)
+            @Html.DisplayNameFor(model => model.CurrentMonthNumber)
         </th>
         <th></th>
     </tr>
@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Customer.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CurrentMonthId)
+            @Html.DisplayFor(modelItem => item.CurrentMonthNumber)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

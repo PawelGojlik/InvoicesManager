@@ -3,9 +3,18 @@ namespace InvoicesManager.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AbstractCustomerCompany : DbMigration
+    public partial class Inheritance : DbMigration
     {
         public override void Up()
+        {
+            RenameTable(name: "dbo.Companies", newName: "Contacts");
+            AddColumn("dbo.Contacts", "PhoneNumber", c => c.String(maxLength: 20));
+            AddColumn("dbo.Contacts", "ContactPerson", c => c.String(maxLength: 100));
+            AddColumn("dbo.Contacts", "Discriminator", c => c.String(nullable: false, maxLength: 128));
+            DropTable("dbo.Customers");
+        }
+        
+        public override void Down()
         {
             CreateTable(
                 "dbo.Customers",
@@ -22,17 +31,10 @@ namespace InvoicesManager.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
-            DropColumn("dbo.Companies", "PhoneNumber");
-            DropColumn("dbo.Companies", "ContactPerson");
-            DropColumn("dbo.Companies", "Discriminator");
-        }
-        
-        public override void Down()
-        {
-            AddColumn("dbo.Companies", "Discriminator", c => c.String(nullable: false, maxLength: 128));
-            AddColumn("dbo.Companies", "ContactPerson", c => c.String(maxLength: 100));
-            AddColumn("dbo.Companies", "PhoneNumber", c => c.String(maxLength: 20));
-            DropTable("dbo.Customers");
+            DropColumn("dbo.Contacts", "Discriminator");
+            DropColumn("dbo.Contacts", "ContactPerson");
+            DropColumn("dbo.Contacts", "PhoneNumber");
+            RenameTable(name: "dbo.Contacts", newName: "Companies");
         }
     }
 }

@@ -20,5 +20,7 @@ namespace InvoicesManager.Models
         public System.Data.Entity.DbSet<InvoicesManager.Models.Company> Companies { get; set; }
 
         public System.Data.Entity.DbSet<InvoicesManager.Models.Invoice> Invoices { get; set; }
+
+        public System.Data.Entity.DbSet<InvoicesManager.Models.Contact> Contacts { get; set; }
     }
 }

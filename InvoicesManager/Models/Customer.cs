@@ -7,7 +7,7 @@ using InvoicesManager.Models;
 
 namespace InvoicesManager.Models
 {
-    public abstract class CoreProperties
+    public abstract class Contact
     {
         public int Id { get; set; }
 
@@ -40,7 +40,7 @@ namespace InvoicesManager.Models
         public string NIP { get; set; }
     }
 
-    public class Customer:CoreProperties
+    public class Customer: Contact
     {
         [MaxLength(20)]
         [Display(Name = "Phone number")]
@@ -52,7 +52,7 @@ namespace InvoicesManager.Models
         public string ContactPerson { get; set; }
     }
 
-    public class Company:CoreProperties
+    public class Company: Contact
     {
 
     }

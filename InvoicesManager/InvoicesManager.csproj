@@ -303,9 +303,17 @@
     <Compile Include="Migrations\201903071450233_UpdateInvoiceDb.Designer.cs">
       <DependentUpon>201903071450233_UpdateInvoiceDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903071509026_AbstractCustomerCompany.cs" />
-    <Compile Include="Migrations\201903071509026_AbstractCustomerCompany.Designer.cs">
-      <DependentUpon>201903071509026_AbstractCustomerCompany.cs</DependentUpon>
+    <Compile Include="Migrations\201903071555580_AbstractCustomerCompany.cs" />
+    <Compile Include="Migrations\201903071555580_AbstractCustomerCompany.Designer.cs">
+      <DependentUpon>201903071555580_AbstractCustomerCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903071608225_ChangeInvoiceDb.cs" />
+    <Compile Include="Migrations\201903071608225_ChangeInvoiceDb.Designer.cs">
+      <DependentUpon>201903071608225_ChangeInvoiceDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903082228093_Inheritance.cs" />
+    <Compile Include="Migrations\201903082228093_Inheritance.Designer.cs">
+      <DependentUpon>201903082228093_Inheritance.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -429,8 +437,14 @@
     <EmbeddedResource Include="Migrations\201903071450233_UpdateInvoiceDb.resx">
       <DependentUpon>201903071450233_UpdateInvoiceDb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903071509026_AbstractCustomerCompany.resx">
-      <DependentUpon>201903071509026_AbstractCustomerCompany.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903071555580_AbstractCustomerCompany.resx">
+      <DependentUpon>201903071555580_AbstractCustomerCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071608225_ChangeInvoiceDb.resx">
+      <DependentUpon>201903071608225_ChangeInvoiceDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903082228093_Inheritance.resx">
+      <DependentUpon>201903082228093_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
