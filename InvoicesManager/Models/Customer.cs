@@ -13,7 +13,7 @@ namespace InvoicesManager.Models
 
         [Required]
         [MaxLength(255)]
-        [Display(Name = " Customer name")]
+        [Display(Name = " Name")]
         public string Name { get; set; }
 
         [Required]

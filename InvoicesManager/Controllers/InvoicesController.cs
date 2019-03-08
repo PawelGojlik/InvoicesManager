@@ -53,6 +53,8 @@ namespace InvoicesManager.Controllers
         {
             if (ModelState.IsValid)
             {
+                InvoiceInitialize(invoice);
+
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,6 +124,16 @@ namespace InvoicesManager.Controllers
             db.Invoices.Remove(invoice);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private void InvoiceInitialize(Invoice invoice)
+        {
+            invoice.IssueDate = DateTime.Now;
+
+            var previousNumber = db.Invoices.Where(i => (i.IssueDate.Month == DateTime.Now.Month && i.IssueDate.Year == DateTime.Now.Year))
+                .Max(i => i.CurrentMonthNumber);
+
+            invoice.CurrentMonthNumber = ++previousNumber;
         }
 
         protected override void Dispose(bool disposing)

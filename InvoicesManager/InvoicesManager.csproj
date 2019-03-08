@@ -315,6 +315,10 @@
     <Compile Include="Migrations\201903082228093_Inheritance.Designer.cs">
       <DependentUpon>201903082228093_Inheritance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903082240302_InvoiceIssueDateNonNullable.cs" />
+    <Compile Include="Migrations\201903082240302_InvoiceIssueDateNonNullable.Designer.cs">
+      <DependentUpon>201903082240302_InvoiceIssueDateNonNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -445,6 +449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903082228093_Inheritance.resx">
       <DependentUpon>201903082228093_Inheritance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903082240302_InvoiceIssueDateNonNullable.resx">
+      <DependentUpon>201903082240302_InvoiceIssueDateNonNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
