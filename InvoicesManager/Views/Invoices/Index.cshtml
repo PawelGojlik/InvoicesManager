@@ -19,31 +19,43 @@
             @Html.DisplayNameFor(model => model.CurrentMonthNumber)
         </th>
         <th>
-            @Html.Label("Company name")
+            @Html.Label("Customer name")
         </th>
         <th>
-            @Html.Label("Customer name")
+            @Html.DisplayNameFor(model => model.Customer.NIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
         </th>
         <th>
             @Html.Label("Invoice operations")
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.IssueDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CurrentMonthNumber)
-            /@Html.DisplayFor(modelItem => item.IssueDate.Month)
-            /@Html.DisplayFor(modelItem => item.IssueDate.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Company.Name)
+            @{ 
+                var _number = item.CurrentMonthNumber / 1000000;
+                var _month = (item.CurrentMonthNumber % 1000000) / 10000;
+                var _year = item.CurrentMonthNumber % 10000;
+
+                var _currentMonthNumber = _number + "/" + _month + "/" + _year;
+                }
+            @Html.Label(_currentMonthNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.NIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

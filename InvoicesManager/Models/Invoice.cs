@@ -30,5 +30,8 @@ namespace InvoicesManager.Models
         [Display(Name = "Issue date")]
         public DateTime IssueDate { get; set; }
 
+
+        [Display(Name = "Total amount")]
+        public double TotalAmount { get; set; }
     }
 }

@@ -319,6 +319,10 @@
     <Compile Include="Migrations\201903082240302_InvoiceIssueDateNonNullable.Designer.cs">
       <DependentUpon>201903082240302_InvoiceIssueDateNonNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903090028233_InvoiceCurrentMonthNumber.cs" />
+    <Compile Include="Migrations\201903090028233_InvoiceCurrentMonthNumber.Designer.cs">
+      <DependentUpon>201903090028233_InvoiceCurrentMonthNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -452,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903082240302_InvoiceIssueDateNonNullable.resx">
       <DependentUpon>201903082240302_InvoiceIssueDateNonNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090028233_InvoiceCurrentMonthNumber.resx">
+      <DependentUpon>201903090028233_InvoiceCurrentMonthNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

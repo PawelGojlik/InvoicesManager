@@ -18,7 +18,7 @@ namespace InvoicesManager.Controllers
         public ActionResult Index()
         {
             var invoices = db.Invoices.Include(i => i.Company).Include(i => i.Customer);
-            return View(invoices.ToList());
+            return View(invoices.ToList().OrderByDescending(i =>i.IssueDate));
         }
 
         // GET: Invoices/Details/5
@@ -41,6 +41,7 @@ namespace InvoicesManager.Controllers
         {
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
+            
             return View();
         }
 
@@ -49,11 +50,11 @@ namespace InvoicesManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId,IssueDate")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                InvoiceInitialize(invoice);
+                CalculateInvoiceNumber(invoice);
 
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
@@ -87,7 +88,7 @@ namespace InvoicesManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId")] Invoice invoice)
+        public ActionResult Edit([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId,IssueDate")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -126,14 +127,21 @@ namespace InvoicesManager.Controllers
             return RedirectToAction("Index");
         }
 
-        private void InvoiceInitialize(Invoice invoice)
+        private void CalculateInvoiceNumber(Invoice invoice)
         {
-            invoice.IssueDate = DateTime.Now;
-
-            var previousNumber = db.Invoices.Where(i => (i.IssueDate.Month == DateTime.Now.Month && i.IssueDate.Year == DateTime.Now.Year))
+            try
+            {
+                int previousNumber = db.Invoices.Where(i => (i.IssueDate.Month == invoice.IssueDate.Month
+            && i.IssueDate.Year == invoice.IssueDate.Year))
                 .Max(i => i.CurrentMonthNumber);
 
-            invoice.CurrentMonthNumber = ++previousNumber;
+                invoice.CurrentMonthNumber = previousNumber + 1000000;
+            }
+            catch (Exception)
+            {
+                invoice.CurrentMonthNumber = 1000000 + invoice.IssueDate.Month * 10000 + invoice.IssueDate.Year;
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
