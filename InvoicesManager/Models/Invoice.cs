@@ -9,19 +9,27 @@ namespace InvoicesManager.Models
 {
     public class Invoice
     {
-        [Key]
+        public Invoice()
+        {
+                InvoiceItems = new List<InvoiceItem>();   
+        }
+        
         public int Id { get; set; }
 
+        
         public Customer Customer { get; set; }
 
+        [Required]
         [Display(Name = "Customer name")]
         public int CustomerId { get; set; }
 
-        [Display(Name ="Invoice ID")]
-        public int CurrentMonthNumber { get; set; }
+        [Display(Name ="Invoice Number")]
+        public int InvoiceNumber { get; set; }
 
+        
         public Company Company { get; set; }
 
+        [Required]
         [Display(Name ="Company name")]
         public int CompanyId { get; set; }
 
@@ -29,9 +37,33 @@ namespace InvoicesManager.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Issue date")]
         public DateTime IssueDate { get; set; }
+        
+
+        public IList<InvoiceItem> InvoiceItems;
 
 
-        [Display(Name = "Total amount")]
-        public double TotalAmount { get; set; }
+        //below are calculated properties
+        public double TotalNet
+        {
+            get
+            {
+                if (InvoiceItems == null)
+                    return 0;
+                else
+                    return InvoiceItems.Sum(i => i.TotalNet);
+            }
+        }
+
+        public double TotalGross
+        {
+            get
+            {
+                if (InvoiceItems == null)
+                    return 0;
+                else
+                    return InvoiceItems.Sum(i => i.TotalGross);
+            }
+        }
+
     }
 }

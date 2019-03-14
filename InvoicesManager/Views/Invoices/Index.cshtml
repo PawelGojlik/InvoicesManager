@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.IssueDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentMonthNumber)
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
         </th>
         <th>
             @Html.Label("Customer name")
@@ -25,7 +25,7 @@
             @Html.DisplayNameFor(model => model.Customer.NIP)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
+            @Html.DisplayNameFor(model => model.TotalGross)
         </th>
         <th>
             @Html.Label("Invoice operations")
@@ -39,14 +39,7 @@
             @Html.DisplayFor(modelItem => item.IssueDate)
         </td>
         <td>
-            @{ 
-                var _number = item.CurrentMonthNumber / 1000000;
-                var _month = (item.CurrentMonthNumber % 1000000) / 10000;
-                var _year = item.CurrentMonthNumber % 10000;
-
-                var _currentMonthNumber = _number + "/" + _month + "/" + _year;
-                }
-            @Html.Label(_currentMonthNumber)
+            @Html.DisplayFor(modelItem => item.InvoiceNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.Name)
@@ -55,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.Customer.NIP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
+            @Html.DisplayFor(modelItem => item.TotalGross)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

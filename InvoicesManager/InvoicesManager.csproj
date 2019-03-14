@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.EntityFrameworkCore, Version=2.2.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.2.2.2\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
@@ -323,15 +326,33 @@
     <Compile Include="Migrations\201903090028233_InvoiceCurrentMonthNumber.Designer.cs">
       <DependentUpon>201903090028233_InvoiceCurrentMonthNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903111751275_AddInvoiceItem.cs" />
+    <Compile Include="Migrations\201903111751275_AddInvoiceItem.Designer.cs">
+      <DependentUpon>201903111751275_AddInvoiceItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903111817329_AddInvoiceItem-force.cs" />
+    <Compile Include="Migrations\201903111817329_AddInvoiceItem-force.Designer.cs">
+      <DependentUpon>201903111817329_AddInvoiceItem-force.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903111837067_AddInvoiceItemChange.cs" />
+    <Compile Include="Migrations\201903111837067_AddInvoiceItemChange.Designer.cs">
+      <DependentUpon>201903111837067_AddInvoiceItemChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.cs" />
+    <Compile Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.Designer.cs">
+      <DependentUpon>201903141345461_UpdateInvoiceAndInvoiceItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\InvoiceItem.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\InvoiceInvoiceItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-sandstone.css" />
@@ -357,7 +378,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -406,6 +429,7 @@
     <Content Include="Views\Invoices\Details.cshtml" />
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -459,6 +483,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903090028233_InvoiceCurrentMonthNumber.resx">
       <DependentUpon>201903090028233_InvoiceCurrentMonthNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903111751275_AddInvoiceItem.resx">
+      <DependentUpon>201903111751275_AddInvoiceItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903111817329_AddInvoiceItem-force.resx">
+      <DependentUpon>201903111817329_AddInvoiceItem-force.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903111837067_AddInvoiceItemChange.resx">
+      <DependentUpon>201903111837067_AddInvoiceItemChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.resx">
+      <DependentUpon>201903141345461_UpdateInvoiceAndInvoiceItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

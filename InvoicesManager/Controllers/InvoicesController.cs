@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using InvoicesManager.Models;
+using InvoicesManager.ViewModel;
 
 namespace InvoicesManager.Controllers
 {
@@ -18,7 +19,7 @@ namespace InvoicesManager.Controllers
         public ActionResult Index()
         {
             var invoices = db.Invoices.Include(i => i.Company).Include(i => i.Customer);
-            return View(invoices.ToList().OrderByDescending(i =>i.IssueDate));
+            return View(invoices.ToList().OrderByDescending(i =>i.IssueDate).ThenByDescending(i => i.InvoiceNumber));
         }
 
         // GET: Invoices/Details/5
@@ -39,10 +40,19 @@ namespace InvoicesManager.Controllers
         // GET: Invoices/Create
         public ActionResult Create()
         {
+            var lastInvoiceNumber = db.Invoices.OrderByDescending(i => i.InvoiceNumber).Select(i => i.InvoiceNumber).FirstOrDefault();
+
+            var invoice = new Invoice()
+            {
+                IssueDate = DateTime.Now,
+                InvoiceNumber = (lastInvoiceNumber == 0) ?
+                1 : (++lastInvoiceNumber)
+            };
+
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
             
-            return View();
+            return View(invoice);
         }
 
         // POST: Invoices/Create
@@ -50,19 +60,26 @@ namespace InvoicesManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId,IssueDate")] Invoice invoice)
+        public ActionResult Create(Invoice invoice)
         {
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
+            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", invoice.CustomerId);
+
             if (ModelState.IsValid)
             {
-                CalculateInvoiceNumber(invoice);
+                var invoiceExists = db.Invoices.Find(invoice.InvoiceNumber);
+                if(invoiceExists != null)
+                {
+                    ModelState.AddModelError("InvoiceNumber", "Invoice number already exists");
+                    return View(invoice);
+                }
 
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name", invoice.CompanyId);
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", invoice.CustomerId);
+                return RedirectToAction("Edit", "Invoices", new { id = invoice.Id });
+
+            }
             return View(invoice);
         }
 
@@ -127,22 +144,7 @@ namespace InvoicesManager.Controllers
             return RedirectToAction("Index");
         }
 
-        private void CalculateInvoiceNumber(Invoice invoice)
-        {
-            try
-            {
-                int previousNumber = db.Invoices.Where(i => (i.IssueDate.Month == invoice.IssueDate.Month
-            && i.IssueDate.Year == invoice.IssueDate.Year))
-                .Max(i => i.CurrentMonthNumber);
-
-                invoice.CurrentMonthNumber = previousNumber + 1000000;
-            }
-            catch (Exception)
-            {
-                invoice.CurrentMonthNumber = 1000000 + invoice.IssueDate.Month * 10000 + invoice.IssueDate.Year;
-            }
-            
-        }
+       
 
         protected override void Dispose(bool disposing)
         {
