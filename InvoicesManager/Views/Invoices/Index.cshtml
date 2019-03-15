@@ -8,29 +8,31 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null,  htmlAttributes: new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IssueDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InvoiceNumber)
-        </th>
-        <th>
-            @Html.Label("Customer name")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.NIP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalGross)
-        </th>
-        <th>
-            @Html.Label("Invoice operations")
-        </th>
-    </tr>
+<table class="table mt-1">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </th>
+            <th>
+                Customer name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.NIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalGross)
+            </th>
+            <th>
+                Invoice operations
+            </th>
+        </tr>
+    </thead>
 
 @foreach (var item in Model)
 {

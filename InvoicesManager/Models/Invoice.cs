@@ -43,7 +43,7 @@ namespace InvoicesManager.Models
 
 
         //below are calculated properties
-        public double TotalNet
+        public decimal TotalNet
         {
             get
             {
@@ -54,7 +54,7 @@ namespace InvoicesManager.Models
             }
         }
 
-        public double TotalGross
+        public decimal TotalGross
         {
             get
             {

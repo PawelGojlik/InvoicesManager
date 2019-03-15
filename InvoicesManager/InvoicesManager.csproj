@@ -273,6 +273,7 @@
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceItemsController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -341,6 +342,10 @@
     <Compile Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.cs" />
     <Compile Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.Designer.cs">
       <DependentUpon>201903141345461_UpdateInvoiceAndInvoiceItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903151116379_UpdateInvoice.cs" />
+    <Compile Include="Migrations\201903151116379_UpdateInvoice.Designer.cs">
+      <DependentUpon>201903151116379_UpdateInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -430,6 +435,10 @@
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Invoices\_InvoiceItems.cshtml" />
+    <Content Include="Views\InvoiceItems\_Index.cshtml" />
+    <Content Include="Views\InvoiceItems\Create.cshtml" />
+    <Content Include="Views\InvoiceItems\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -495,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.resx">
       <DependentUpon>201903141345461_UpdateInvoiceAndInvoiceItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903151116379_UpdateInvoice.resx">
+      <DependentUpon>201903151116379_UpdateInvoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

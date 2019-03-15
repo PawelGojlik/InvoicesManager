@@ -18,22 +18,17 @@ namespace InvoicesManager.Models
         public string Description { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0 - 9] *\.[0-9]{2}$", ErrorMessage = "Inappropriate format")]
-        [Range(0.01,double.MaxValue)]
-        public double UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0 - 9] *\.[0-9]{2}$", ErrorMessage = "Inappropriate format")]
-        [Range(1,int.MaxValue)]
-        public double Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         [Required]
-        [RegularExpression(@"^[0 - 9] *\.[0-9]{2}$", ErrorMessage = "Inappropriate format")]
         [Range(0,100)]
-        public double VATRate { get; set; }
+        public decimal VATRate { get; set; }
 
         //below are calculated properties
-        public double  TotalNet
+        public decimal  TotalNet
         {
             get
             {
@@ -41,7 +36,7 @@ namespace InvoicesManager.Models
             }
         }
 
-        public double VAT
+        public decimal VAT
         {
             get
             {
@@ -49,7 +44,7 @@ namespace InvoicesManager.Models
             }
         }
 
-        public double TotalGross
+        public decimal TotalGross
         {
             get
             {
