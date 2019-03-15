@@ -24,7 +24,7 @@ namespace InvoicesManager.Controllers
         // GET: Create
         public ActionResult Create(int InvoiceId)
         {
-            ViewBag.InvoiceId = InvoiceId;
+            //ViewBag.InvoiceId = InvoiceId;
 
             var invoiceItem = new InvoiceItem()
             {
@@ -80,6 +80,32 @@ namespace InvoicesManager.Controllers
                 return RedirectToAction("Edit", "Invoices", new { id = invoiceItem.InvoiceId });
             }
             return View(invoiceItem);
+        }
+
+        // GET: InvoiceItems/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            InvoiceItem invoiceItem = db.InvoiceItems.Find(id);
+            if (invoiceItem == null)
+            {
+                return HttpNotFound();
+            }
+            return View(invoiceItem);
+        }
+
+        // POST: InvoiceItems/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            InvoiceItem invoiceItem = db.InvoiceItems.Find(id);
+            db.InvoiceItems.Remove(invoiceItem);
+            db.SaveChanges();
+            return RedirectToAction("Edit","Invoices", new { id=invoiceItem.InvoiceId});
         }
     }
 }

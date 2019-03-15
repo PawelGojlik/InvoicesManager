@@ -58,7 +58,7 @@ namespace InvoicesManager.Models
         {
             get
             {
-                if (InvoiceItems == null)
+                if (InvoiceItems.Count == 0)
                     return 0;
                 else
                     return InvoiceItems.Sum(i => i.TotalGross);

@@ -439,6 +439,7 @@
     <Content Include="Views\InvoiceItems\_Index.cshtml" />
     <Content Include="Views\InvoiceItems\Create.cshtml" />
     <Content Include="Views\InvoiceItems\Edit.cshtml" />
+    <Content Include="Views\InvoiceItems\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
