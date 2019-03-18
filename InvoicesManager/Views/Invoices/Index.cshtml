@@ -1,0 +1,63 @@
+﻿@model IEnumerable<InvoicesManager.Models.Invoice>
+
+@{
+    ViewBag.Title = "Invoices";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Invoices</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null,  htmlAttributes: new { @class = "btn btn-primary" })
+</p>
+<table class="table mt-1">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.NIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalGross)
+            </th>
+            <th>
+                Invoice operations
+            </th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.NIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalGross)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" })
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

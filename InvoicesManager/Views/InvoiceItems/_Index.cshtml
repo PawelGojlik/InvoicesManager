@@ -1,0 +1,74 @@
+﻿@model IEnumerable<InvoicesManager.Models.InvoiceItem>
+
+<table class="table table-bordered mt-1">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalNet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VAT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalGross)
+            </th>
+            <th>
+                Item operations
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr class="border">
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalNet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalGross)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm" })
+            </td>
+        </tr>
+    }
+
+    <tfoot>
+        <tr>
+            <td colspan=2><span class="label">SUMMARY: </span></td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.Quantity))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.UnitPrice))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.TotalNet))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.VAT))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.TotalGross))</td>
+        </tr>
+    </tfoot>
+
+</table>
