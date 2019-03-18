@@ -1,7 +1,7 @@
 ﻿@model InvoicesManager.Models.Invoice
 
 @{
-    ViewBag.Title = "Edit invoice";
+    ViewBag.Title = "Invoice details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
                 @Html.AntiForgeryToken()
 
                 @*<div class="form-horizontal">*@
-                <h4>Edit invoice</h4>
+                <h4>Invoice details</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -26,24 +26,21 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.IssueDate, htmlAttributes: new { @class = "control-label col-md-6" })
                     @Html.EditorFor(model => model.IssueDate, new { htmlAttributes = new { @Value = Model.IssueDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = "true" } })
-                    @Html.ValidationMessageFor(model => model.IssueDate, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CustomerId, "Customer", htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.CustomerId, new { htmlAttributes = new { @Value = Model.IssueDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = "true" } })
-                    @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.CompanyId, "Company", htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.CompanyId, new { htmlAttributes = new { @Value = Model.IssueDate.ToString("yyyy/MM/dd"), @class = "form-control", @readonly = "true" } })
-                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Company.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CustomerId, "Customer", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
                 </div>
 
                 <div class="form-group">
                     <div>
-                        <input type="submit" value="Save" class="btn btn-primary" />
+                        @*<input type="submit" value="Save" class="btn btn-primary" />*@
                     </div>
                 </div>
 
@@ -59,7 +56,7 @@
         </td>
 
         <td width="50%">
-            @{Html.RenderAction("Index", "InvoiceItems", new { id = Model.Id });}
+            @{Html.RenderAction("PrintIndex", "InvoiceItems", new { id = Model.Id });}
         </td>
     </tr>
 </table>

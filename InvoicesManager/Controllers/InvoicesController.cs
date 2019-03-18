@@ -29,11 +29,14 @@ namespace InvoicesManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+
+            Invoice invoice = db.Invoices.Include(i => i.Customer).Include(i => i.Company).SingleOrDefault(i => i.Id == id);
+
             if (invoice == null)
             {
                 return HttpNotFound();
             }
+
             return View(invoice);
         }
 
@@ -125,7 +128,9 @@ namespace InvoicesManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            
+            Invoice invoice = db.Invoices.Include(i => i.Customer).Include(i => i.Company).SingleOrDefault(i => i.Id == id);
+
             if (invoice == null)
             {
                 return HttpNotFound();

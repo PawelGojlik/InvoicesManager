@@ -21,6 +21,15 @@ namespace InvoicesManager.Controllers
             return PartialView("_Index",invoiceItems);
         }
 
+        // GET: InvoiceItem
+        public PartialViewResult PrintIndex(int id)
+        {
+            var invoiceItems = db.InvoiceItems.Where(i => i.InvoiceId == id).ToList();
+
+            return PartialView("_PrintIndex", invoiceItems);
+        }
+
+
         // GET: Create
         public ActionResult Create(int InvoiceId)
         {

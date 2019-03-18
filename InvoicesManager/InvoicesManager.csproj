@@ -435,11 +435,11 @@
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
-    <Content Include="Views\Invoices\_InvoiceItems.cshtml" />
     <Content Include="Views\InvoiceItems\_Index.cshtml" />
     <Content Include="Views\InvoiceItems\Create.cshtml" />
     <Content Include="Views\InvoiceItems\Edit.cshtml" />
     <Content Include="Views\InvoiceItems\Delete.cshtml" />
+    <Content Include="Views\InvoiceItems\_PrintIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
