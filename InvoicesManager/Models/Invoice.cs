@@ -39,7 +39,7 @@ namespace InvoicesManager.Models
         public DateTime IssueDate { get; set; }
         
 
-        public IList<InvoiceItem> InvoiceItems;
+        public IList<InvoiceItem> InvoiceItems { get; set; }
 
 
         //below are calculated properties
@@ -47,7 +47,7 @@ namespace InvoicesManager.Models
         {
             get
             {
-                if (InvoiceItems == null)
+                if (InvoiceItems.Count == 0)
                     return 0;
                 else
                     return InvoiceItems.Sum(i => i.TotalNet);

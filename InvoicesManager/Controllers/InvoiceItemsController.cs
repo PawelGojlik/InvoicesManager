@@ -24,7 +24,6 @@ namespace InvoicesManager.Controllers
         // GET: Create
         public ActionResult Create(int InvoiceId)
         {
-            //ViewBag.InvoiceId = InvoiceId;
 
             var invoiceItem = new InvoiceItem()
             {

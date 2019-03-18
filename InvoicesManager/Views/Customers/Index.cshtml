@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<InvoicesManager.Models.Customer>
 
 @{
+    ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,7 +16,7 @@
 
     <h2 class="text-center">Customers</h2>
 
-    @Html.ActionLink("ADD NEW CUSTOMER", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("CREATE NEW", "Create", null, new { @class = "btn btn-primary" })
 
     <form class="form-inline my-2">
 

@@ -63,7 +63,11 @@
     <tfoot>
         <tr>
             <td colspan=2><span class="label">SUMMARY: </span></td>
-            <td>@String.Format("{0:C}", Model.Sum(i => i.Quantity))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.Quantity))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.UnitPrice))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.TotalNet))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.VAT))</td>
+            <td>@String.Format("{0:F2}", Model.Sum(i => i.TotalGross))</td>
         </tr>
     </tfoot>
 

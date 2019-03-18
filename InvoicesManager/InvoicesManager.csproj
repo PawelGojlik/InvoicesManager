@@ -343,9 +343,9 @@
     <Compile Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.Designer.cs">
       <DependentUpon>201903141345461_UpdateInvoiceAndInvoiceItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903151116379_UpdateInvoice.cs" />
-    <Compile Include="Migrations\201903151116379_UpdateInvoice.Designer.cs">
-      <DependentUpon>201903151116379_UpdateInvoice.cs</DependentUpon>
+    <Compile Include="Migrations\201903181101295_UpdateInvoice.cs" />
+    <Compile Include="Migrations\201903181101295_UpdateInvoice.Designer.cs">
+      <DependentUpon>201903181101295_UpdateInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -506,8 +506,8 @@
     <EmbeddedResource Include="Migrations\201903141345461_UpdateInvoiceAndInvoiceItem.resx">
       <DependentUpon>201903141345461_UpdateInvoiceAndInvoiceItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903151116379_UpdateInvoice.resx">
-      <DependentUpon>201903151116379_UpdateInvoice.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903181101295_UpdateInvoice.resx">
+      <DependentUpon>201903181101295_UpdateInvoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,7 +18,7 @@ namespace InvoicesManager.Controllers
         // GET: Invoices
         public ActionResult Index()
         {
-            var invoices = db.Invoices.Include(i => i.Company).Include(i => i.Customer);
+            var invoices = db.Invoices.Include(i => i.Company).Include(i => i.Customer).Include(i => i.InvoiceItems);
             return View(invoices.ToList().OrderByDescending(i =>i.IssueDate).ThenByDescending(i => i.InvoiceNumber));
         }
 
@@ -105,7 +105,7 @@ namespace InvoicesManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CustomerId,CompanyId,CurrentMonthId,IssueDate")] Invoice invoice)
+        public ActionResult Edit(Invoice invoice)
         {
             if (ModelState.IsValid)
             {

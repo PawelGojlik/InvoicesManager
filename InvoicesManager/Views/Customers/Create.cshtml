@@ -1,6 +1,7 @@
 ﻿@model InvoicesManager.Models.Customer
 
 @{
+    ViewBag.Title = "Create customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -21,7 +22,7 @@
         @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>Create customer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
